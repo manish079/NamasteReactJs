@@ -67,7 +67,7 @@
   flex-wrap: wrap;
   flex-direction: row;
   gap: 20px;
-  justify-content: ;
+  /* justify-content: ; */
 }
 .food-img {
   width: 100%;
