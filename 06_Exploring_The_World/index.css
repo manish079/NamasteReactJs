@@ -54,6 +54,13 @@
   width: 100%;
 }
 
+.filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 40px;
+  padding: 10px;
+}
 .filter-btn {
   margin: 10px;
   cursor: pointer;
@@ -61,4 +68,11 @@
 .login-btn {
   padding: 0px 20px;
   margin: 10px;
+}
+
+.search-text,
+.search-btn,
+.filter-btn {
+  margin-left: 10px;
+  padding: 5px;
 }
