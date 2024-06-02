@@ -5,8 +5,8 @@ import { SWIGGY_API } from "../utils/constants";
 import Shimmer from "./Shimmer";
 
 const Body = () => {
-  const [listOfRestaurants, setListOfRestaurants] = useState(resList);
-  const [filteredRestaurants, setFilterRestaurants] = useState(resList);
+  const [listOfRestaurants, setListOfRestaurants] = useState([]);
+  const [filteredRestaurants, setFilterRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
@@ -15,16 +15,24 @@ const Body = () => {
 
   console.log("Body Rendered");
   const fetchData = async () => {
-    const response = await fetch(SWIGGY_API);
+    const response = await fetch(SWIGGY_API); //Enable cors extension to bypass cors issue
 
     const jsonData = await response.json();
 
     //Optional Chaining
-    // console.log(jsonData?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle);
+    console.log(
+      jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
 
-    //API not correctly working So I am fetching res data from mockData SO here I am not set data
-    // setListOfRestaurants( jsonData?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info);
-    // setFilteredRestaurants( jsonData?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info);
+    setListOfRestaurants(
+      jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
+    setFilterRestaurants(
+      jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
   };
 
   //Shimmer UI
@@ -59,7 +67,7 @@ const Body = () => {
             className="search-btn"
             onClick={() => {
               const filterRest = listOfRestaurants.filter((res) => {
-                return res.data.name
+                return res.info.name
                   .toLowerCase()
                   .includes(searchText.toLowerCase());
               });
@@ -75,7 +83,7 @@ const Body = () => {
             //If iterate over filterRestaurants then it give filter on visible cards but if I am do iterate over listOfRestaurants then it give filter on whole list of cards.
 
             const filteredList = filteredRestaurants.filter(
-              (res) => res.data.avgRating > 4
+              (res) => res.info.avgRating > 4
             );
             setFilterRestaurants(filteredList);
           }}
@@ -85,7 +93,7 @@ const Body = () => {
       </div>
       <div className="res-container">
         {filteredRestaurants.map((restaurant) => (
-          <RestaurantCard key={restaurant?.data?.id} resData={restaurant} />
+          <RestaurantCard key={restaurant?.info?.id} resData={restaurant} />
         ))}
       </div>
     </div>
