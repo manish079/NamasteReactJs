@@ -26,34 +26,27 @@ import resList from "../utils/mockData";
 }; */
 
 const Body = () => {
-  const [restaurantList, setRestaurantList] = useState(resList);
+  const [listOfRestaurants, setListOfRestaurants] = useState(resList);
 
   return (
-    <div className="body-container">
-      <button
-        className="search"
-        onClick={() => {
-          const filteredRes = restaurantList.filter((restaurant) => {
-            restaurant.data.avgRating > 4.0;
-          });
-          setRestaurantList(filteredRes);
-        }}
-      >
-        Top Rated Restaurant
-      </button>
-      <div className="restaurant-container">
-        {restaurantList.map((restaurant) => {
-          return (
-            <RestaurantCard
-              key={restaurant.data.id}
-              id={restaurant.data.id}
-              name={restaurant.data.name}
-              image={`https://media-assets.swiggy.com/swiggy/image/upload/z/${restaurant.data.cloudinaryImageId}`}
-              rating={restaurant.data.avgRating}
-              deliveryTime={restaurant.data.deliveryTime}
-            />
-          );
-        })}
+    <div className="body">
+      <div className="filter">
+        <button
+          className="filter-btn"
+          onClick={() => {
+            const filteredList = listOfRestaurants.filter(
+              (res) => res.data.avgRating > 4
+            );
+            setListOfRestaurants(filteredList);
+          }}
+        >
+          Top Rated Restaurants
+        </button>
+      </div>
+      <div className="res-container">
+        {listOfRestaurants.map((restaurant) => (
+          <RestaurantCard key={restaurant.data.id} resData={restaurant} />
+        ))}
       </div>
     </div>
   );
