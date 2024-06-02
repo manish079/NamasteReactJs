@@ -1,32 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData";
-
-/* const Body = () => {
-  return (
-    <div className="body-container">
-      <div className="search">Search</div>
-      <div className="restaurant-container">
-        
-        <RestaurantCard
-          name="Shinde Dairy"
-          image="https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cGl6emF8ZW58MHx8MHx8fDA%3D"
-        />
-        <RestaurantCard
-          name="Ghasitaram"
-          image="https://images.unsplash.com/photo-1590947132387-155cc02f3212?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHBpenphfGVufDB8fDB8fHww"
-        />
-        <RestaurantCard
-          name="Irani Cafe"
-          image="https://images.unsplash.com/photo-1588315029754-2dd089d39a1a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHBpenphfGVufDB8fDB8fHww"
-        />
-      </div>
-    </div>
-  );
-}; */
+import { SWIGGY_API } from "../utils/constants";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState(resList);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const response = await fetch(SWIGGY_API);
+
+    const jsonData = await response.json();
+
+    //Optional Chaining
+    // console.log(jsonData?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle);
+
+    //API not correctly working So I am fetching res data from mockData SO here I am not set data
+    // setListOfRestaurants( jsonData?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info);
+  };
 
   return (
     <div className="body">
@@ -45,7 +39,7 @@ const Body = () => {
       </div>
       <div className="res-container">
         {listOfRestaurants.map((restaurant) => (
-          <RestaurantCard key={restaurant.data.id} resData={restaurant} />
+          <RestaurantCard key={restaurant?.data?.id} resData={restaurant} />
         ))}
       </div>
     </div>
