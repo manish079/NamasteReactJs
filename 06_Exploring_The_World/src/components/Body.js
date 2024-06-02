@@ -34,11 +34,15 @@ const Body = () => {
 
   // listOfRestaurants.length = 0;
 
-  if (listOfRestaurants.length === 0) {
-    return <Shimmer />;
-  }
+  //Conditional statements
+  // if (listOfRestaurants.length === 0) {
+  //   return <Shimmer />;
+  // }
 
-  return (
+  //Another way is write conditional statements in JSX
+  return listOfRestaurants.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="body">
       <div className="filter">
         <div className="search-bar">
