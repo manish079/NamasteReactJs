@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData";
 import { SWIGGY_API } from "../utils/constants";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState(resList);
@@ -25,6 +26,17 @@ const Body = () => {
     // setListOfRestaurants( jsonData?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info);
     // setFilteredRestaurants( jsonData?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info);
   };
+
+  //Shimmer UI
+  /**
+   * If listOfRestaurants has no cards then we show SHIMMER
+   */
+
+  // listOfRestaurants.length = 0;
+
+  if (listOfRestaurants.length === 0) {
+    return <Shimmer />;
+  }
 
   return (
     <div className="body">
