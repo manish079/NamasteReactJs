@@ -1,0 +1,32 @@
+{
+  "name": "reactjs-code",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manish079/NamasteReactJs.git"
+  },
+  "author": "Manish",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manish079/NamasteReactJs/issues"
+  },
+  "homepage": "https://github.com/manish079/NamasteReactJs#readme",
+  "devDependencies": {
+    "parcel": "^2.12.0",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.23.1"
+  },
+  "browserList": [
+    "last 2 versions"
+  ]
+}
