@@ -7,7 +7,7 @@ const About = () => {
       <h1>About</h1>
       <h3>I am Manish</h3>
       <User />
-      <UserClass />
+      <UserClass name={"Manish Prajapati"} location={"Sirohi"} />
     </>
   );
 };
