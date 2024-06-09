@@ -14,7 +14,7 @@ const AppLayout = () => {
       <Header />
       {/* <Body /> */}
       <Outlet />
-      {/* //outlet will replace by component which we want to leaded */}
+      {/* outlet will replace by component which we want to leaded */}
     </div>
   );
 };

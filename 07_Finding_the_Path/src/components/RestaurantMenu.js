@@ -46,12 +46,13 @@ const RestaurantMenu = () => {
 
       <img style={{ width: "200px" }} src={CDN_URL + cloudinaryImageId} />
       <h1>{name}</h1>
-      <h2>
+      <h2 style={{ marginBottom: "30px" }}>
         {cuisines.join(", ")} - {costForTwo / 100} Rs.
       </h2>
       <ul>
+        <h3 style={{ margin: "0 0 20px 10px", color: "red" }}>Menu:- </h3>
         {itemCards.map((item) => (
-          <li key={item.card.info.id}>
+          <li key={item.card.info.id} style={{ margin: "0 0 20px 10px" }}>
             {item.card.info.name} - {"Rs."}
             {item.card.info.price / 100 || item.card.info.defaultPrice / 100}
           </li>
