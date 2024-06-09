@@ -52,7 +52,7 @@ const RestaurantMenu = () => {
       <ul>
         <h3 style={{ margin: "0 0 20px 10px", color: "red" }}>Menu:- </h3>
         {itemCards.map((item) => (
-          <li key={item?.card?.info?.id} style={{ margin: "0 0 20px 10px" }}>
+          <li key={item?.card?.info?.id} style={{ margin: "0 0 20px 40px" }}>
             {item?.card?.info?.name} - {"Rs."}
             {item?.card?.info?.price / 100 ||
               item?.card?.info?.defaultPrice / 100}
