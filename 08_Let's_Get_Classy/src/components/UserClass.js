@@ -8,12 +8,31 @@ class UserClass extends React.Component {
       count2: 1,
       count3: 0,
     };
+
+    console.log("Child class constructor: " + this.props.name);
   }
+
+  /**
+   * componentDidMount() function is used to calls APIs in class based components.
+   * But why we use this
+   * Before API calling First rendered component then once component is rendered then fetch data from API is best way So we known componentDidMount() function called after then rendered method. (first constructor is called then rendered method then componentDidMount())
+   *
+   */
+
+  componentDidMount() {
+    //life cycle react
+    //constructor will be called first
+    //then render will be called
+    //then componentDidMount() called
+
+    console.log("Child Component Did Mount: " + this.props.name);
+  }
+
   render() {
     const { name, location } = this.props; // destructuring
     const { count1, count2 } = this.state;
 
-    console.log("Class component rendered");
+    console.log("Child Class component rendered: " + this.props.name);
 
     return (
       <div className="user-card">
