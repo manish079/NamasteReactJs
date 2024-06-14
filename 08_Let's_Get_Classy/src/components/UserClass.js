@@ -46,19 +46,51 @@ class UserClass extends React.Component {
   }
 
   //First time update data with default when component is rendered and set default data Then after render componentDidMount() is called and it get data from API and again DOM is render with API data
+
+  //below function called after every update (componentDidMount call only initial render component)
   componentDidUpdate() {
     //called just before a component is unMounting(disabling or removing from UI)
 
     //When we goes on new page then tis function wll called
 
     console.log("Child class Component Did Update");
+
+    //we need to cleaning up this into unMounting phase because when go into another page or component it still runing into background
+    this.timer = setInterval(() => {
+      console.log("Timer...");
+    }, 1000);
   }
 
+  /*
+    - componentWillUnmount use to cleaning 
+    - as we know react is SPA(Single Page Application) we do only plays with component here and there
+    - When we load any component then we need to clear some things like if we use setInterval or setTimeout into useEffect() or componentDidMount and we render another component then previous component setInterval is running So to make out app scalable We need to do cleaning
+  */
   componentWillUnmount() {
     //called just before component is unmounting (removing from UI)
 
+    clearInterval(this.timer); //Thi will do cleaning of setInterval
+
     console.log("Component Will Unmount");
   }
+
+  //Same issue is in useEffect also into functionalComponent where we also need to clean up any code we use return.
+
+  /* 
+  useEffect(()=>{
+    const timer = setInterval(()=>{
+      console.log("Timer from useEffect");
+    }, 1000)
+  
+    console.log("User Effect");
+
+    return will be called when we go to another page  (another component)
+    return ()=>{
+      clearInterval(timer)
+      console.log("useEffect Return");
+    }
+  }, []);
+   */
 
   render() {
     const { count1, count2 } = this.state;
