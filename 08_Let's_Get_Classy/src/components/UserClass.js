@@ -4,9 +4,11 @@ class UserClass extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      count1: 0,
-      count2: 1,
-      count3: 0,
+      userData: {
+        name: "default",
+        location: "DEFAULT",
+        avatar_url: "http://dummy-photo.com",
+      },
     };
 
     console.log("Child class constructor: " + this.props.name);
@@ -19,6 +21,7 @@ class UserClass extends React.Component {
    *
    */
 
+  /* 
   componentDidMount() {
     //life cycle react
     //constructor will be called first
@@ -27,17 +30,47 @@ class UserClass extends React.Component {
 
     console.log("Child Component Did Mount: " + this.props.name);
   }
+ */
+
+  async componentDidMount() {
+    console.log("Child class did Mount: ");
+
+    const response = await fetch("https://api.github.com/users/manish079");
+
+    const jsonData = await response.json();
+    console.log(jsonData);
+
+    this.setState({
+      userData: jsonData,
+    });
+  }
+
+  //First time update data with default when component is rendered and set default data Then after render componentDidMount() is called and it get data from API and again DOM is render with API data
+  componentDidUpdate() {
+    //called just before a component is unMounting(disabling or removing from UI)
+
+    //When we goes on new page then tis function wll called
+
+    console.log("Child class Component Did Update");
+  }
+
+  componentWillUnmount() {
+    //called just before component is unmounting (removing from UI)
+
+    console.log("Component Will Unmount");
+  }
 
   render() {
-    const { name, location } = this.props; // destructuring
     const { count1, count2 } = this.state;
 
-    console.log("Child Class component rendered: " + this.props.name);
+    const { name, location, avatar_url } = this.state.userData;
+
+    console.log("Child class render");
 
     return (
       <div className="user-card">
-        <h1>count1: {count1}</h1>
-        <button
+        {/* <h1>count1: {count1}</h1> */}
+        {/* <button
           onClick={() => {
             //Never update State variable directly
             //this.state.count1 = this.state.count1 + 1;
@@ -52,7 +85,8 @@ class UserClass extends React.Component {
           }}
         >
           Count Increase
-        </button>
+        </button> */}
+        <img src={avatar_url} style={{ width: "100px" }}></img>
         <h2>Name: {name}</h2>
         <h3>Location: {location}</h3>
         <h4>Contact: @manish79</h4>
@@ -60,5 +94,26 @@ class UserClass extends React.Component {
     );
   }
 }
+
+/*****
+ *
+ * constructor is called
+ *
+ * Render (Dummy data)
+ *    <HTML loaded with dummy data for few minutes>
+ *
+ * Component Did Mount
+ *    <API CALL>
+ *    <this.setState> -> State variable is updated
+ *
+ * ----UPDATE
+ *
+ *      render(API DATA)
+ *      <HTML (new API call)
+ *      component Did mount update
+ *
+ *
+ *
+ */
 
 export default UserClass;

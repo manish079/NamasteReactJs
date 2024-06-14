@@ -35,8 +35,8 @@ class About extends React.Component {
         {/* pointer comes to UserClass then he start mounting of UserClass even About class mounting has not been complete yet */}
 
         <UserClass name={"First"} location={"Sirohi"} />
-        <UserClass name={"Second"} location={"Delhi"} />
-        <UserClass name={"Third"} location={"Delhi"} />
+        {/* <UserClass name={"Second"} location={"Delhi"} />
+        <UserClass name={"Third"} location={"Delhi"} /> */}
       </>
     );
   }
