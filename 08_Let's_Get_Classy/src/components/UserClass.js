@@ -43,6 +43,10 @@ class UserClass extends React.Component {
     this.setState({
       userData: jsonData,
     });
+
+    // this.timer = setInterval(() => {
+    //   console.log("Timer...");
+    // }, 1000);
   }
 
   //First time update data with default when component is rendered and set default data Then after render componentDidMount() is called and it get data from API and again DOM is render with API data
