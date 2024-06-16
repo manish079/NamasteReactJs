@@ -10,3 +10,25 @@ distribute code into small small part and make modular fashion I we follow singl
 
 //Always make separate file for new Hook into Utility
 //Always start with "use"
+
+
+How to make custom hook
+  //finalize the contract 
+  // what is input and output
+
+
+  ----------------------------------
+If we want to build small application then we can no issue with single javascript file. (check in network and select JS)
+
+but for large application we need to do make multiple JS files
+
+make bundles for different parts into big application
+we split large application into smaller bundlers
+
+(All are same below )
+  - chunking
+  - Code splitting
+  - dynamic bundling
+  - lazy loading
+  - on demand loading
+

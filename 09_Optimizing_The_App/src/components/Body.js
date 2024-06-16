@@ -3,11 +3,17 @@ import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useRestaurant from "../utils/useRestaurant";
+import userOnlineStatus from "../utils/userOnlineStatus";
 
 const Body = () => {
   const [searchText, setSearchText] = useState("");
   const { listOfRestaurants, filteredRestaurants, setFilterRestaurants } =
     useRestaurant();
+
+  const onlineStatus = userOnlineStatus();
+
+  // check user is online or offline
+  if (onlineStatus === false) return <h1>Please check your Internet</h1>;
 
   return listOfRestaurants?.length === 0 ? (
     <Shimmer />
