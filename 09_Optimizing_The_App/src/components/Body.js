@@ -1,42 +1,15 @@
 import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
-import resList from "../utils/mockData";
-import { SWIGGY_API } from "../utils/constants";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useRestaurant from "../utils/useRestaurant";
 
 const Body = () => {
-  const [listOfRestaurants, setListOfRestaurants] = useState([]);
-  const [filteredRestaurants, setFilterRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const { listOfRestaurants, filteredRestaurants, setFilterRestaurants } =
+    useRestaurant();
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  console.log("Body Rendered");
-  const fetchData = async () => {
-    const response = await fetch(SWIGGY_API); //Enable cors extension to bypass cors issue
-
-    const jsonData = await response.json();
-
-    console.log(
-      jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
-    );
-
-    setListOfRestaurants(
-      jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
-    );
-    setFilterRestaurants(
-      jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants
-    );
-  };
-
-  //Another way is write conditional statements in JSX
-  return listOfRestaurants.length === 0 ? (
+  return listOfRestaurants?.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
@@ -54,7 +27,7 @@ const Body = () => {
           <button
             className="search-btn"
             onClick={() => {
-              const filterRest = listOfRestaurants.filter((res) => {
+              const filterRest = listOfRestaurants?.filter((res) => {
                 return res.info.name
                   .toLowerCase()
                   .includes(searchText.toLowerCase());
@@ -78,7 +51,7 @@ const Body = () => {
         </button>
       </div>
       <div className="res-container">
-        {filteredRestaurants.map((restaurant) => (
+        {filteredRestaurants?.map((restaurant) => (
           <Link
             key={restaurant?.info?.id}
             to={"/restaurants/" + restaurant.info.id}
@@ -90,4 +63,5 @@ const Body = () => {
     </div>
   );
 };
+
 export default Body;

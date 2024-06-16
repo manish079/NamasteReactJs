@@ -1,0 +1,12 @@
+distribute code into small small part and make modular fashion I we follow single responsible principle code 
+ So code will be easy for maintain and testing and Reusable code
+
+// Custom Hooks (We make customs hooks for single responsible code)
+//In the end of the hooks is normal utility function
+
+//eg. in RestaurantCardMenu component I used a useEffect and then after I am set data on UI.
+//but RestaurantCardMenu component work is to only display Restaurant data, so here for where is data came from this component have not bother it So we make a custom hook "useRestaurantMenu()" That will fetch data and we make into Utility function.
+
+
+//Always make separate file for new Hook into Utility
+//Always start with "use"

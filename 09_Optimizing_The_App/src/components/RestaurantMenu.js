@@ -3,13 +3,17 @@ import { MENU_API } from "../utils/constants";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import { CDN_URL } from "../utils/constants";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
-  const [restInfo, setRestInfo] = useState(null);
+  // const [restInfo, setRestInfo] = useState(null);
 
   const { resId } = useParams();
 
-  useEffect(() => {
+  const restInfo = useRestaurantMenu(resId);
+
+  //we have used custom hook for get resMenu (to make code modular and testable)
+  /* useEffect(() => {
     fetchMenu();
   }, []);
 
@@ -20,7 +24,7 @@ const RestaurantMenu = () => {
     console.log(json);
 
     setRestInfo(json?.data);
-  };
+  }; */
 
   if (restInfo === null) return <Shimmer />;
 
