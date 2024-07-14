@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
-import RestaurantCard from "./RestaurantCard";
+import { RestaurantCard, RestaurantCardWithPromoted } from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useRestaurant from "../utils/useRestaurant";
 import userOnlineStatus from "../utils/userOnlineStatus";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { RestaurantCardPromoted } from "./RestaurantCard";
 
 const Body = () => {
   const [searchText, setSearchText] = useState("");
   const { listOfRestaurants, filteredRestaurants, setFilterRestaurants } =
     useRestaurant();
+
+  const RestaurantCardPromoted = RestaurantCardWithPromoted(RestaurantCard);
 
   const onlineStatus = userOnlineStatus();
 
@@ -63,7 +66,13 @@ const Body = () => {
             key={restaurant?.info?.id}
             to={"/restaurants/" + restaurant.info.id}
           >
-            <RestaurantCard resData={restaurant} />
+            {/* <RestaurantCard resData={restaurant} /> */}
+            {/* if the restaurant is promoted then add a promoted label component else normal */}
+            {restaurant?.data?.promoted ? (
+              <RestaurantCardPromoted resData={restaurant} />
+            ) : (
+              <RestaurantCard resData={restaurant} />
+            )}
           </Link>
         ))}
       </div>

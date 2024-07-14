@@ -1,6 +1,6 @@
 import { CDN_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
-const RestaurantCard = (props) => {
+export const RestaurantCard = (props) => {
   const { resData } = props;
 
   const { cloudinaryImageId, name, avgRating, cuisines, costForTwo, sla } =
@@ -24,4 +24,18 @@ const RestaurantCard = (props) => {
   );
 };
 
-export default RestaurantCard;
+//Higher order components
+//input-> RestaurantCard ==> RestaurantCardPromoted
+export const RestaurantCardWithPromoted = (RestaurantCard) => {
+  return (props) => {
+    //this function will return JSX
+    return (
+      <>
+        <label className="absolute bg-black text-white m-2 p-2 rounded-lg">
+          Promoted
+        </label>
+        <RestaurantCard {...props} />
+      </>
+    );
+  };
+};
