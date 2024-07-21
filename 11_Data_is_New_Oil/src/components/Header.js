@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import userOnlineStatus from "../utils/userOnlineStatus";
@@ -9,7 +9,6 @@ const Header = () => {
   const onlineStatus = userOnlineStatus();
 
   const { loggedInUser } = useContext(UserContext);
-  console.log(loggedInUser);
 
   return (
     <div className="bg-teal-100 flex justify-between mx-1 px-10">
