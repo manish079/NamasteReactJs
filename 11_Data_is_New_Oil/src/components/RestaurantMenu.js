@@ -13,19 +13,7 @@ const RestaurantMenu = () => {
 
   const restInfo = useRestaurantMenu(resId);
 
-  //we have used custom hook for get resMenu (to make code modular and testable)
-  /* useEffect(() => {
-    fetchMenu();
-  }, []);
-
-  const fetchMenu = async () => {
-    const data = await fetch(MENU_API + resId);
-    const json = await data.json();
-
-    console.log(json);
-
-    setRestInfo(json?.data);
-  }; */
+  const [showIndex, setShowIndex] = useState(null); // for accordion bydefault are all collapse
 
   if (restInfo === null) return <Shimmer />;
 
@@ -53,10 +41,14 @@ const RestaurantMenu = () => {
         {cuisines.join(", ")} - {costForTwo / 100} Rs.
       </p>
       {/* categories accordion */}
-      {resCategories.map((category) => (
+      {resCategories.map((category, index) => (
         <RestaurantCategory
           key={category?.card?.card?.title}
           data={category?.card?.card}
+          // lifting the State Up (Manage children from parent )
+          showItems={index === showIndex ? true : false}
+          //If open accordion is selected and need to collapse when on click on open accordion then we check (index === showIndex)
+          setShowIndex={() => setShowIndex(index === showIndex ? null : index)}
         />
       ))}
     </div>

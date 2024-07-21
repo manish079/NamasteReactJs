@@ -1,13 +1,16 @@
 import { useState } from "react";
 import ItemList from "./ItemList.jsx";
 
-const RestaurantCategory = ({ data }) => {
+const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
   // console.log(data);
 
-  const [showItems, setShowItems] = useState(false);
+  // const [showItems, setShowItems] = useState(false);
 
   const handleClick = () => {
-    showItems ? setShowItems(false) : setShowItems(true);
+    // showItems ? setShowItems(false) : setShowItems(true);
+    // setShowItems(!showItems)  //This has a issue is when open a accordion then other then already open accordion does't closed So we use other way "Controlled state from parent" known as "Lifting the state up"
+
+    setShowIndex();
   };
 
   return (
