@@ -4,6 +4,7 @@ import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import { CDN_URL } from "../utils/constants";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
   // const [restInfo, setRestInfo] = useState(null);
@@ -35,25 +36,29 @@ const RestaurantMenu = () => {
     restInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
       ?.card;
 
-  console.log("cards: " + itemCards);
+  // console.log(restInfo?.cards[4]?.groupedCard?.cardGroupMap);
+
+  const resCategories = restInfo?.cards[4]?.groupedCard?.cardGroupMap?.[
+    "REGULAR"
+  ]?.cards.filter(
+    (category) =>
+      category?.card?.card?.["@type"] ===
+      "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+  );
 
   return (
-    <div className="menu">
-      <img style={{ width: "200px" }} src={CDN_URL + cloudinaryImageId} />
-      <h1>{name}</h1>
-      <h2 style={{ marginBottom: "30px" }}>
+    <div className="text-center">
+      <h1 className="font-bold my-6 text-2xl">{name}</h1>
+      <p className="font-bold text-lg">
         {cuisines.join(", ")} - {costForTwo / 100} Rs.
-      </h2>
-      <ul>
-        <h3 style={{ margin: "0 0 20px 10px", color: "red" }}>Menu:- </h3>
-        {itemCards?.map((item) => (
-          <li key={item?.card?.info?.id} style={{ margin: "0 0 20px 40px" }}>
-            {item?.card?.info?.name} - {"Rs."}
-            {item?.card?.info?.price / 100 ||
-              item?.card?.info?.defaultPrice / 100}
-          </li>
-        ))}
-      </ul>
+      </p>
+      {/* categories accordion */}
+      {resCategories.map((category) => (
+        <RestaurantCategory
+          key={category?.card?.card?.title}
+          data={category?.card?.card}
+        />
+      ))}
     </div>
   );
 };
