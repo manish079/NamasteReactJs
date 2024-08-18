@@ -5,7 +5,8 @@ const ItemList = ({ items }) => {
   const dispatch = useDispatch();
   const handleAddToCart = (item) => {
     //dispatch an action
-    dispatch(addItem("PIZZA"));
+    console.log("Clicked");
+    dispatch(addItem(item));
   };
 
   return (
@@ -32,7 +33,7 @@ const ItemList = ({ items }) => {
             <div className=" absolute bottom-0">
               <button
                 className=" bg-black mx-10 text-white px-2 py-1 shadow-lg m-auto rounded-lg"
-                onClick={handleAddToCart}
+                onClick={() => handleAddToCart(item)}
               >
                 Add +
               </button>
