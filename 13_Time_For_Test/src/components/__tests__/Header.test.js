@@ -2,6 +2,7 @@ import Contact from "../Contact.js";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
+//Unit Testings
 test("Should render load contact us component", () => {
   render(<Contact />);
 
