@@ -3,8 +3,19 @@ import { Link } from "react-router-dom";
 export const RestaurantCard = (props) => {
   const { resData } = props;
 
+  // console.log(resData);
+
   const { cloudinaryImageId, name, avgRating, cuisines, costForTwo, sla } =
     resData?.info;
+
+  // const {
+  //   cloudinaryImageId = "",
+  //   name = "Restaurant Name",
+  //   avgRating = "N/A",
+  //   cuisines = [],
+  //   costForTwo = "N/A",
+  //   sla = { deliveryTime: "N/A" },
+  // } = resData?.info || {};
 
   return (
     <div className="w-60 bg-gray-100 p-2 rounded-lg border-solid border-[1.5px] transition-transform transition-colors duration-300 hover:bg-gray-200 hover:scale-105">
