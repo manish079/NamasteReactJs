@@ -16,7 +16,7 @@ const Header = () => {
   //Subscribing the store using a selector
 
   const cartItems = useSelector((store) => store.cart?.items);
-  console.log(cartItems);
+  // console.log(cartItems);
 
   return (
     <div className="bg-teal-100 flex justify-between mx-1 px-10">

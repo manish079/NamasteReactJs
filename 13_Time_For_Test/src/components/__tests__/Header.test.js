@@ -1,59 +1,58 @@
-import Contact from "../Contact.js";
-import { render, screen } from "@testing-library/react";
+import { Provider } from "react-redux";
+import Header from "../Header.js";
+import { render, screen, fireEvent } from "@testing-library/react";
+import appStore from "../../utils/appStore.js";
+import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
 
-//Unit Testings
-test("Should render load contact us component", () => {
-  render(<Contact />);
+it("Should render Header Component with a login button", () => {
+  render(
+    <BrowserRouter>
+      <Provider store={appStore}>
+        <Header />
+      </Provider>
+    </BrowserRouter>
+  );
 
-  const heading = screen.getByText("Contact"); //anywhere where Contact text then this test will be pass
+  // const loginButton = screen.getByRole("button")});
 
-  //   const heading = screen.getByPlaceholderText("name");
+  //finding specific button
+  // const loginButton = screen.getByRole("button", { name: "Login" }); //role is best way
 
-  //Assertion
-  expect(heading).toBeInTheDocument();
+  const loginButton = screen.getByText("Login");
+
+  expect(loginButton).toBeInTheDocument();
 });
 
-test("Should button into contact component", () => {
-  render(<Contact />);
+it("Should render Header Component with a card items 0", () => {
+  render(
+    <BrowserRouter>
+      <Provider store={appStore}>
+        <Header />
+      </Provider>
+    </BrowserRouter>
+  );
 
-  const button = screen.getByRole("button");
+  const cartItems = screen.getByText("Cart");
+  // const cartItems = screen.getByText(/Cart/); use regex
 
-  //Assertion
-  expect(button).toBeInTheDocument();
+  expect(cartItems).toBeInTheDocument();
 });
 
-//We can Write "it" also in place of test It just for naming convenience
-it("Should load 2 input boxes on the contact component", () => {
-  render(<Contact />);
+//Fire a Event
+it("Should change login Button to Logout on click", () => {
+  render(
+    <BrowserRouter>
+      <Provider store={appStore}>
+        <Header />
+      </Provider>
+    </BrowserRouter>
+  );
+  const loginButton = screen.getByRole("button", { name: "Login" });
 
-  //Querying
-  const inputBoxes = screen.getAllByRole("input"); //This will return JSX element(react fiber note, virtual dom, react element, object all are same thing)
-  //   console.log(inputBoxes);
+  fireEvent.click(loginButton);
 
-  //Assertion
-  expect(inputBoxes / length).toBe(2); //not.toBe(2);
-});
+  const logoutButton = screen.getByRole("button", { name: "Logout" });
 
-//Grouping test cases
-describe("Contact Us Page Test Case", () => {
-  test("Should button into contact component", () => {
-    render(<Contact />);
-
-    const button = screen.getByRole("button");
-
-    //Assertion
-    expect(button).toBeInTheDocument();
-  });
-
-  test("Should load 2 input boxes on the contact component", () => {
-    render(<Contact />);
-
-    //Querying
-    const inputBoxes = screen.getAllByRole("input"); //This will return JSX element(react fiber note, virtual dom, react element, object all are same thing)
-    //   console.log(inputBoxes);
-
-    //Assertion
-    expect(inputBoxes / length).toBe(2); //not.toBe(2);
-  });
+  expect(logoutButton).toBeInTheDocument();
 });
