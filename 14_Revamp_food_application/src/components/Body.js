@@ -22,14 +22,14 @@ const Body = () => {
   return listOfRestaurants?.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="bg-bodyBg-custom-white pt-2">
+    <div className="pt-2 font-sans">
       <div className="mx-10 mt-5">
         <div className="flex justify-evenly mb-5">
           <div>
             <input
               type="text"
               data-testid="searchInput"
-              className="border border-gray-300 rounded-lg px-3 py-1 focus:outline-none focus:ring-2 focus:ring-teal-200"
+              className="border border-gray-300 rounded-lg px-3 py-1 focus:outline-none focus:ring-1 focus:ring-button-search-btn"
               placeholder="Search"
               value={searchText}
               onChange={(e) => {
@@ -37,7 +37,7 @@ const Body = () => {
               }}
             />
             <button
-              className="bg-teal-100 px-5 py-1 ml-2 rounded-lg"
+              className="bg-button-search-btn px-5 py-1 ml-2 rounded-lg text-white"
               onClick={() => {
                 const filterRest = listOfRestaurants?.filter((res) => {
                   return res.info.name
@@ -51,7 +51,7 @@ const Body = () => {
             </button>
           </div>
           <button
-            className="bg-gray-200 px-5 rounded-lg"
+            className="bg-button-search-btn px-5 rounded-lg text-white"
             onClick={() => {
               const filteredList = filteredRestaurants.filter(
                 (res) => res.info.avgRating > 4.5

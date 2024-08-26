@@ -25,15 +25,14 @@ const AppLayout = () => {
   }, []);
 
   //set loggedInUser name everywhere where we use name
-
   return (
     <Provider store={appStore}>
-      <div>
-        <UserContext.Provider value={{ loggedInUser: userName }}>
-          <Header />
+      <UserContext.Provider value={{ loggedInUser: userName }}>
+        <Header />
+        <div className="container">
           <Outlet />
-        </UserContext.Provider>
-      </div>
+        </div>
+      </UserContext.Provider>
     </Provider>
   );
 };

@@ -3,8 +3,19 @@ export default {
   content: ["./src/**/*.{html,js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      //for left and right side margin
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: "2rem",
+          sm: "2rem",
+          md: "4rem",
+          lg: "6rem",
+          xl: "8rem",
+        },
+      },
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
+        sans: ["Poppins", "sans-serif"],
       },
       colors: {
         headerBg: {
@@ -13,6 +24,9 @@ export default {
         },
         bodyBg: {
           "custom-white": "#F0F0F0",
+        },
+        button: {
+          "search-btn": "#DC2626",
         },
       },
     },

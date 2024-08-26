@@ -35,7 +35,7 @@ const RestaurantMenu = () => {
   );
 
   return (
-    <div className="text-center">
+    <div className="text-center font-sans">
       <h1 className="font-bold my-6 text-2xl">{name}</h1>
       <p className="font-bold text-lg">
         {cuisines.join(", ")} - {costForTwo / 100} Rs.

@@ -29,7 +29,7 @@ export const RestaurantCard = (props) => {
         src={CDN_URL + cloudinaryImageId}
       />
       <div className="flex flex-col justify-between h-full mt-2">
-        <div>
+        <div className="flex flex-col gap-2">
           <h3 className="mb-1 font-medium text-sm truncate font-sans">
             {name}
           </h3>

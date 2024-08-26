@@ -10,7 +10,7 @@ const ItemList = ({ items }) => {
   };
 
   return (
-    <div>
+    <div className="font-sans">
       {items?.map((item) => (
         <div
           data-testid="foodItems"
