@@ -22,7 +22,7 @@ const Body = () => {
   return listOfRestaurants?.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="bg-bodyBg-custom-white">
+    <div className="bg-bodyBg-custom-white pt-2">
       <div className="mx-10 mt-5">
         <div className="flex justify-evenly mb-5">
           <div>

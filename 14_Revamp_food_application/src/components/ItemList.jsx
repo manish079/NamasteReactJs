@@ -42,7 +42,7 @@ const ItemList = ({ items }) => {
             {console.log(item.card.info.imageId)}
             <img
               src={CDN_URL + item.card.info.imageId}
-              className="w-full h-20"
+              className="w-full h-20 shadow-lg"
               alt="image not exist"
               loading="lazy"
             />

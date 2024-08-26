@@ -20,22 +20,26 @@ export const RestaurantCard = (props) => {
   return (
     <div
       data-testid="resCard"
-      className="flex flex-col gap-2 p-2 bg-gray-100 rounded-lg shadow-md w-64 
-       border-solid border-[1.5px] transition-transform transition-colors duration-300 hover:bg-gray-200 hover:scale-105 h-80"
+      className="flex flex-col gap-2 p-2 bg-gray-100 rounded-lg shadow-md w-48
+       border-solid border-[1.5px] transition-transform transition-colors duration-300 hover:bg-gray-200 hover:scale-105 h-64"
     >
       <img
-        className="rounded-lg h-40 w-full object-cover"
+        className="rounded-lg h-24 w-full object-cover shadow-lg"
         alt="res-logo"
         src={CDN_URL + cloudinaryImageId}
       />
       <div className="flex flex-col justify-between h-full mt-2">
         <div>
-          <h3 className="mb-2 font-medium truncate">{name}</h3>
-          <h4 className="truncate">{cuisines?.join(", ")}</h4>
-          <h4>{avgRating} stars</h4>
-          <h4>{costForTwo}</h4>
+          <h3 className="mb-1 font-medium text-sm truncate font-sans">
+            {name}
+          </h3>
+          <h4 className="text-xs truncate font-sans">{cuisines?.join(", ")}</h4>
+          <h4 className="text-xs font-sans">{avgRating} stars</h4>
+          <h4 className="text-xs font-sans">{costForTwo}</h4>
         </div>
-        <h4 className="mt-auto">{sla?.deliveryTime} minutes</h4>
+        <h4 className="mt-auto text-xs font-sans">
+          {sla?.deliveryTime} minutes
+        </h4>
       </div>
     </div>
   );
