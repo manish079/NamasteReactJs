@@ -9,6 +9,7 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import UserContext from "./utils/UserContext";
+import Footer from "./components/Footer";
 
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
@@ -32,6 +33,7 @@ const AppLayout = () => {
         <div className="container">
           <Outlet />
         </div>
+        <Footer />
       </UserContext.Provider>
     </Provider>
   );

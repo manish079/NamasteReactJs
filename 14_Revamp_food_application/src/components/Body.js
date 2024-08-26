@@ -6,6 +6,7 @@ import useRestaurant from "../utils/useRestaurant";
 import userOnlineStatus from "../utils/userOnlineStatus";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { RestaurantCardPromoted } from "./RestaurantCard";
+import Footer from "./Footer";
 
 const Body = () => {
   const [searchText, setSearchText] = useState("");
