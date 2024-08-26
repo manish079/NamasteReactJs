@@ -1,16 +1,41 @@
 import { useDispatch } from "react-redux";
 import { CDN_URL } from "../utils/constants";
 import { addItem } from "../utils/cartSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const ItemList = ({ items }) => {
   const dispatch = useDispatch();
+
   const handleAddToCart = (item) => {
-    //dispatch an action
-    console.log("Clicked");
+    // Customize the toast message
+    toast.success(`Item "${item?.card?.info?.name}" added to cart!`, {
+      autoClose: 2000,
+      className: " p-2 rounded-lg shadow-lg border-t-4 border-white ",
+      bodyClassName: "text-sm font-semibold",
+      theme: "light",
+      progressClassName: "toast-progress-bar",
+    });
+
+    // Dispatch an action to add the item to the cart
     dispatch(addItem(item));
   };
 
   return (
     <div className="font-sans">
+      <ToastContainer
+        position="top-right"
+        autoClose={2000} // Match autoClose duration
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        className="fixed top-4 right-4 z-50"
+      />
       {items?.map((item) => (
         <div
           data-testid="foodItems"
@@ -30,22 +55,21 @@ const ItemList = ({ items }) => {
             </div>
             <p className="text-xs">{item?.card?.info?.description}</p>
           </div>
-          <div className=" w-3/12 p-4 relative">
-            <div className=" absolute bottom-0">
-              <button
-                className=" bg-black mx-10 text-white px-2 py-1 shadow-lg m-auto rounded-lg"
-                onClick={() => handleAddToCart(item)}
-              >
-                Add +
-              </button>
-            </div>
-            {console.log(item.card.info.imageId)}
+          <div className="w-4/12 p-4 relative">
             <img
               src={CDN_URL + item.card.info.imageId}
               className="w-full h-20 shadow-lg"
               alt="image not exist"
               loading="lazy"
             />
+            <div className="absolute bottom-[0px] left-1/2 transform -translate-x-1/2 w-full flex justify-center">
+              <button
+                className="bg-black text-white px-4 py-2 shadow-lg rounded-lg text-xs"
+                onClick={() => handleAddToCart(item)}
+              >
+                Add +
+              </button>
+            </div>
           </div>
         </div>
       ))}
