@@ -18,7 +18,10 @@ export const RestaurantCard = (props) => {
   // } = resData?.info || {};
 
   return (
-    <div className="w-60 bg-gray-100 p-2 rounded-lg border-solid border-[1.5px] transition-transform transition-colors duration-300 hover:bg-gray-200 hover:scale-105">
+    <div
+      data-testid="resCard"
+      className="w-60 bg-gray-100 p-2 rounded-lg border-solid border-[1.5px] transition-transform transition-colors duration-300 hover:bg-gray-200 hover:scale-105"
+    >
       <img
         className="rounded-lg h-40 w-full"
         alt="res-logo"

@@ -18,10 +18,10 @@ const useRestaurant = () => {
         jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants || [];
 
-      console.log(
-        jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-          ?.restaurants
-      );
+      // console.log(
+      //   jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+      //     ?.restaurants
+      // );
 
       setListOfRestaurants(restaurants);
       setFilterRestaurants(restaurants);
