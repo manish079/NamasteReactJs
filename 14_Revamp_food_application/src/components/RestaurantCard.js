@@ -20,7 +20,7 @@ export const RestaurantCard = (props) => {
   return (
     <div
       data-testid="resCard"
-      className="flex flex-col gap-2 p-4 bg-gray-100 rounded-lg shadow-md w-64 
+      className="flex flex-col gap-2 p-2 bg-gray-100 rounded-lg shadow-md w-64 
        border-solid border-[1.5px] transition-transform transition-colors duration-300 hover:bg-gray-200 hover:scale-105 h-80"
     >
       <img

@@ -15,7 +15,7 @@ const ItemList = ({ items }) => {
         <div
           data-testid="foodItems"
           key={item?.card?.info?.id}
-          className="p-2 m-2 border-gray-200 border-b-2 text-left flex justify-between"
+          className="p-2 m-2 border-gray-200 border-b-2 text-left flex justify-between h-30"
         >
           <div className="w-9/12">
             <div className="py-2">
@@ -42,7 +42,7 @@ const ItemList = ({ items }) => {
             {console.log(item.card.info.imageId)}
             <img
               src={CDN_URL + item.card.info.imageId}
-              className="w-full"
+              className="w-full h-20"
               alt="image not exist"
               loading="lazy"
             />
