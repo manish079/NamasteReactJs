@@ -13,13 +13,17 @@ const Header = () => {
   const cartItems = useSelector((store) => store.cart?.items);
 
   return (
-    <div className="bg-headerBg-custom-gray px-0 py-2 font-sans shadow-lg">
+    <div
+      className="bg-headerBg-custom-gray px-0 py-2 font-sans shadow-lg sticky w-full top-0 z-50"
+      style={{
+        backdropFilter: "blur(20px)",
+        backgroundColor: "rgba(255, 255, 255, 0.6)",
+      }}
+    >
       <div className="container mx-auto flex justify-between items-center">
-        {/* Logo Section */}
         <div className="flex-shrink-0">
           <img className="logo w-20" src={LOGO_URL} alt="Logo" />
         </div>
-        {/* Navigation Section */}
         <div className="flex-grow flex justify-end">
           <ul className="flex items-center gap-6 p-2 font-medium">
             <li>Online Status: {onlineStatus ? "✅" : "🔴"}</li>

@@ -1,6 +1,6 @@
 export const CDN_URL = "https://media-assets.swiggy.com/swiggy/image/upload/z/";
 
-export const shimmer_card_unit = 20;
+export const shimmer_card_unit = 8;
 
 export const LOGO_URL =
   "https://png.pngtree.com/png-vector/20220708/ourmid/pngtree-fast-food-logo-png-image_5763171.png";
