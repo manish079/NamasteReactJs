@@ -1,4 +1,6 @@
 export const CDN_URL = "https://media-assets.swiggy.com/swiggy/image/upload/z/";
+export const BASE_CDN_URL_PATH_STRUCTURE =
+  "https://media-assets.swiggy.com/swiggy/image/upload/v1/";
 
 export const shimmer_card_unit = 8;
 

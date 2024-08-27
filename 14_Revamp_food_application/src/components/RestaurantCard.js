@@ -1,4 +1,4 @@
-import { CDN_URL } from "../utils/constants";
+import { CDN_URL, BASE_CDN_URL_PATH_STRUCTURE } from "../utils/constants";
 import { Link } from "react-router-dom";
 export const RestaurantCard = (props) => {
   const { resData } = props;
@@ -17,6 +17,11 @@ export const RestaurantCard = (props) => {
   //   sla = { deliveryTime: "N/A" },
   // } = resData?.info || {};
 
+  const isPathStructure = cloudinaryImageId.includes("/");
+  const imageUrl = isPathStructure
+    ? `${BASE_CDN_URL_PATH_STRUCTURE}${cloudinaryImageId}`
+    : `${CDN_URL}${cloudinaryImageId}`;
+
   return (
     <div
       data-testid="resCard"
@@ -26,7 +31,8 @@ export const RestaurantCard = (props) => {
       <img
         className="rounded-lg h-24 w-full object-cover shadow-lg"
         alt="res-logo"
-        src={CDN_URL + cloudinaryImageId}
+        src={imageUrl}
+        loading="lazy"
       />
       <div className="flex flex-col justify-between h-full mt-2">
         <div className="flex flex-col gap-2">
