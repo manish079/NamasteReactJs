@@ -12,6 +12,13 @@ const Header = () => {
   const { loggedInUser } = useContext(UserContext);
   const cartItems = useSelector((store) => store.cart?.items);
 
+  // State to manage the active link
+  const [activeLink, setActiveLink] = useState("home");
+
+  const handleNavClick = (link) => {
+    setActiveLink(link);
+  };
+
   return (
     <div
       className="bg-headerBg-custom-gray px-0 py-2 font-sans shadow-lg sticky w-full top-0 z-50"
@@ -28,16 +35,56 @@ const Header = () => {
           <ul className="flex items-center gap-6 p-2 font-medium">
             <li>Online Status: {onlineStatus ? "✅" : "🔴"}</li>
             <li>
-              <Link to="/">Home</Link>
+              <Link
+                to="/"
+                className={`${
+                  activeLink === "home"
+                    ? "font-bold text-button-search-btn"
+                    : ""
+                } hover:text-button-search-btn`}
+                onClick={() => handleNavClick("home")}
+              >
+                Home
+              </Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link
+                to="/about"
+                className={`${
+                  activeLink === "about"
+                    ? "font-bold text-button-search-btn"
+                    : ""
+                } hover:text-button-search-btn`}
+                onClick={() => handleNavClick("about")}
+              >
+                About
+              </Link>
             </li>
             <li>
-              <Link to="/contact">Contact Us</Link>
+              <Link
+                to="/contact"
+                className={`${
+                  activeLink === "contact"
+                    ? "font-bold text-button-search-btn"
+                    : ""
+                } hover:text-button-search-btn`}
+                onClick={() => handleNavClick("contact")}
+              >
+                Contact Us
+              </Link>
             </li>
             <li>
-              <Link to="/grocery">Grocery</Link>
+              <Link
+                to="/grocery"
+                className={`${
+                  activeLink === "grocery"
+                    ? "font-bold text-button-search-btn"
+                    : ""
+                } hover:text-button-search-btn`}
+                onClick={() => handleNavClick("grocery")}
+              >
+                Grocery
+              </Link>
             </li>
             <li className="relative flex items-center">
               <Link to="/cart" className="flex items-center">
