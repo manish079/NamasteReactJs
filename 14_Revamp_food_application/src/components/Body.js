@@ -63,7 +63,7 @@ const Body = () => {
             className="bg-button-search-btn px-5 rounded-lg text-white"
             onClick={() => {
               const filteredList = filteredRestaurants.filter(
-                (res) => res.info.avgRating > 4
+                (res) => res.info.avgRating > 4.5
               );
               setFilterRestaurants(filteredList);
             }}

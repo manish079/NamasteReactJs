@@ -5,7 +5,9 @@ export const BASE_CDN_URL_PATH_STRUCTURE =
 export const shimmer_card_unit = 8;
 
 export const LOGO_URL =
-  "https://png.pngtree.com/png-vector/20220708/ourmid/pngtree-fast-food-logo-png-image_5763171.png";
+  "https://png.pngtree.com/png-vector/20220706/ourmid/pngtree-food-logo-png-image_5687717.png";
+// export const LOGO_URL =
+//   "https://png.pngtree.com/png-vector/20220708/ourmid/pngtree-fast-food-logo-png-image_5763171.png";
 
 //Bypass the Cors issue
 // https://thingproxy.freeboard.io/fetch/
