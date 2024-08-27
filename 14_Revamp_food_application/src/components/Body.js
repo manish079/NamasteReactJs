@@ -20,6 +20,14 @@ const Body = () => {
   // check user is online or offline
   if (onlineStatus === false) return <h1>Please check your Internet</h1>;
 
+  useEffect(() => {
+    // Filter restaurants based on search text
+    const filterRest = listOfRestaurants?.filter((res) =>
+      res.info.name.toLowerCase().includes(searchText.toLowerCase())
+    );
+    setFilterRestaurants(filterRest);
+  }, [searchText, listOfRestaurants, setFilterRestaurants]);
+
   return listOfRestaurants?.length === 0 ? (
     <Shimmer />
   ) : (
@@ -55,7 +63,7 @@ const Body = () => {
             className="bg-button-search-btn px-5 rounded-lg text-white"
             onClick={() => {
               const filteredList = filteredRestaurants.filter(
-                (res) => res.info.avgRating > 4.5
+                (res) => res.info.avgRating > 4
               );
               setFilterRestaurants(filteredList);
             }}
