@@ -30,10 +30,13 @@ const AppLayout = () => {
     <Provider store={appStore}>
       <UserContext.Provider value={{ loggedInUser: userName }}>
         <Header />
-        <div className="container">
-          <Outlet />
+
+        <div className="flex flex-col min-h-screen">
+          <main className="flex-1 container">
+            <Outlet />
+          </main>
+          <Footer />
         </div>
-        <Footer />
       </UserContext.Provider>
     </Provider>
   );

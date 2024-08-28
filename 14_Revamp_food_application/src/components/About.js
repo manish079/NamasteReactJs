@@ -16,7 +16,6 @@ class About extends React.Component {
     console.log("Parent class(About) rendered");
     return (
       <>
-        <h1>About</h1>
         <div>
           <UserContext.Consumer>
             {({ loggedInUser }) => (

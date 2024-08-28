@@ -5,7 +5,8 @@ const Footer = () => {
     <footer className="bg-gray-900 text-gray-300 py-6 px-10 mt-12">
       <div className="container mx-auto text-center space-y-4">
         <p className="text-lg font-semibold">
-          &copy; 2024 My Website. All rights reserved.
+          &copy; 2024 My Website. All rights reserved.{" "}
+          <span className="text-sm">Website created by Manish Prajapat</span>
         </p>
 
         <div className="space-x-4">
