@@ -1,40 +1,138 @@
+import React, { useState } from "react";
+import {
+  TextField,
+  Button,
+  Container,
+  Typography,
+  Box,
+  FormHelperText,
+} from "@mui/material";
+import { styled } from "@mui/system";
+
+const FormContainer = styled(Box)({
+  display: "flex",
+  flexDirection: "column",
+  gap: "20px",
+  backgroundColor: "#fff",
+  padding: "40px",
+  borderRadius: "8px",
+  boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+});
+
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    address: "",
+    message: "",
+  });
+  const [errors, setErrors] = useState({
+    username: false,
+    email: false,
+    address: false,
+    message: false,
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+    // Clear the error for the field being edited
+    setErrors({ ...errors, [e.target.id]: false });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Validate form fields
+    const newErrors = {
+      username: !formData.username,
+      email: !formData.email,
+      address: !formData.address,
+      message: !formData.message,
+    };
+
+    if (Object.values(newErrors).includes(true)) {
+      setErrors(newErrors);
+      return; // Stop form submission
+    }
+
+    // Create mailto link
+    const { username, email, address, message } = formData;
+    const body = `
+      Username: ${username}
+      Email: ${email}
+      Address: ${address}
+      Message: ${message}
+    `;
+    window.location.href = `mailto:manishprajapat492@gmail.com?subject=Contact Form Submission&body=${encodeURIComponent(
+      body
+    )}`;
+  };
+
   return (
-    <div className="font-sans shadow-lg w-4/12 p-5 mx-auto my-auto">
-      <div className="min-h-40">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">Contact Us</h1>
-        <form>
-          <div className="relative mb-4">
-            <label
-              className="absolute top-1 left-9 text-gray-700 text-sm font-bold bg-white px-1 transition-transform transform -translate-y-1/2 -translate-x-1/2 duration-300 ease-in-out"
-              htmlFor="name"
-            >
-              Name
-            </label>
-            <input
-              className="appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:bg-white placeholder-transparent"
-              id="name"
-              type="text"
-              placeholder=" "
-            />
-          </div>
-          <div className="relative mb-4">
-            <label
-              className="absolute top-1 left-9 text-gray-700 text-sm font-bold bg-white px-1 transition-transform transform -translate-y-1/2 -translate-x-1/2 duration-300 ease-in-out"
-              htmlFor="email"
-            >
-              Email
-            </label>
-            <input
-              className="appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:bg-white placeholder-transparent"
-              id="email"
-              type="email"
-              placeholder=" "
-            />
-          </div>
-        </form>
-      </div>
-    </div>
+    <Container maxWidth="sm" className="mt-5">
+      <Typography variant="h4" component="h1" gutterBottom textAlign="center">
+        Contact Us
+      </Typography>
+      <FormContainer component="form" onSubmit={handleSubmit}>
+        <TextField
+          id="username"
+          label="Username"
+          variant="outlined"
+          fullWidth
+          value={formData.username}
+          onChange={handleChange}
+          required
+          error={errors.username}
+          helperText={errors.username && "This field is required"}
+        />
+        <TextField
+          id="email"
+          label="Email"
+          variant="outlined"
+          fullWidth
+          value={formData.email}
+          onChange={handleChange}
+          required
+          type="email"
+          error={errors.email}
+          helperText={errors.email && "This field is required"}
+        />
+        <TextField
+          id="address"
+          label="Address"
+          variant="outlined"
+          fullWidth
+          value={formData.address}
+          onChange={handleChange}
+          required
+          error={errors.address}
+          helperText={errors.address && "This field is required"}
+        />
+        <TextField
+          id="message"
+          label="Message"
+          variant="outlined"
+          fullWidth
+          value={formData.message}
+          onChange={handleChange}
+          required
+          multiline
+          rows={4}
+          error={errors.message}
+          helperText={errors.message && "This field is required"}
+        />
+        <Button
+          type="submit"
+          variant="contained"
+          size="large"
+          fullWidth
+          sx={{ mt: 2 }}
+          className="!bg-button-search-btn text-white hover:bg-red-700"
+        >
+          Send Email
+        </Button>
+      </FormContainer>
+    </Container>
   );
 };
 
